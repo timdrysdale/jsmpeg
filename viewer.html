@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSMpeg Stream Client</title>
+	<style type="text/css">
+		html, body {
+			background-color: #111;
+			text-align: center;
+		}
+	</style>
+	
+</head>
+<body>
+	<canvas id="video-canvas"></canvas>
+	<script type="text/javascript" src="jsmpeg.min.js"></script>
+	<script type="text/javascript">
+		var canvas = document.getElementById('video-canvas');
+
+		var urlParams = new URLSearchParams(window.location.search);
+		
+		stream = urlParams.get('stream');
+
+		host = urlParams.get('host');
+
+		port = urlParams.get('port');
+
+		secure = urlParams.get('secure');
+
+		if (host == null) {
+		 host = 'wss://video.practable.io';
+		}
+		
+		if (secure == null) {
+		  scheme = 'ws://'
+		  if (port == null){
+		   port = '8080';
+		  }
+		
+		} else {
+		   scheme = 'wss://'
+		   if (port == null){
+		   port = '443';
+		   }
+		}
+
+		if (port == null){
+		    port = '80'
+		}
+		url = scheme + host + ':' + port + '/' + stream;
+		
+		console.log(url)
+
+		var player = new JSMpeg.Player(url, {canvas: canvas});
+
+	</script>
+</body>
+</html>
