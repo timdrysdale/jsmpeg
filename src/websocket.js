@@ -50,8 +50,12 @@ WSSource.prototype.start = function() {
 WSSource.prototype.resume = function(secondsHeadroom) {
 	// Nothing to do here
 };
-
-WSSource.prototype.onOpen = function() {
+									   WSSource.prototype.onOpen = function() {
+										   if (this.options.hasOwnProperty('jwt')) {
+											   console.log("jwt:",this.options.jwt)
+											   this.socket.send(this.options.jwt)
+										   }
+										   
 	this.progress = 1;
 };
 

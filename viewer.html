@@ -24,10 +24,14 @@
 
 		port = urlParams.get('port');
 
-		secure = urlParams.get('secure');
+	  secure = urlParams.get('secure');
+
+	  videoAuth = urlParams.get('va');
+
+	  
 
 		if (host == null) {
-		 host = 'wss://video.practable.io';
+		 host = 'video.practable.io';
 		}
 		
 		if (secure == null) {
@@ -48,9 +52,10 @@
 		}
 		url = scheme + host + ':' + port + '/' + stream;
 		
-		console.log(url)
+	  console.log(url)
+	  console.log(videoAuth)
 
-		var player = new JSMpeg.Player(url, {canvas: canvas});
+	  var player = new JSMpeg.Player(url, {canvas: canvas, jwt: videoAuth});
 
 	</script>
 </body>
